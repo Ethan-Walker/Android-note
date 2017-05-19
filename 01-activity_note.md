@@ -94,6 +94,7 @@
 
 **在创建活动时，判断传进来的 Bundle对象是否为空，为空则没有需要保存的数据**
 
+```java
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
  		....
@@ -103,7 +104,7 @@
             String save = savedInstanceState.getString("save");
             Log.e(TAG,save);
         }
-
+```
 
 #### finish ####
 
@@ -115,7 +116,7 @@
 
 ### 4.页面中多个按钮事件，使当前`activity`实现`OnClickListener`#
 
-
+```java
 
 	public class MainActivity extends AppCompatActivity implements View.OnClickListener {  实现View.OnClickListener接口，重写 onClick方法
 
@@ -170,6 +171,7 @@
     public void exit(Button b) {
         finish();
     }
+```
 
 ### 5.活动的启动模式 ###
 
