@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:padding="20dp"
+        android:id="@+id/edit_nickname"
+        android:hint="输入姓名"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RadioGroup
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/male"
+            android:text="男"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/female"
+            android:text="女"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+    <EditText
+        android:padding="20dp"
+        android:id="@+id/edit_phone"
+        android:hint="请输入手机号"
+        android:phoneNumber="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:padding="20dp"
+        android:id="@+id/edit_personal"
+        android:hint="请输入个性签名"
+        android:layout_width="match_parent"
+        android:maxLines="3"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/submit"
+        android:text="确认"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
