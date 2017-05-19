@@ -1,11 +1,11 @@
 # Activity #
 
-## 1.向下一个活动传送数据 ##
+### 1.向下一个活动传送数据 ###
 **SecondActivity:**
 
 按钮点击事件中：
 
-			public void onClick(View v) {
+	public void onClick(View v) {
                 Intent intent = new Intent(SecondActivity.this,ThirdActivity.class);
                 intent.putExtra("name","王犇");
                 startActivity(intent);
@@ -15,7 +15,7 @@
 
 `onCreate` 方法中（即当页面加载时）
 
-		Intent intent = getIntent();  // 获取传递进来的intent
+	Intent intent = getIntent();  // 获取传递进来的intent
         if(intent!=null){
             String name = intent.getStringExtra("name");
             if(name!=null){
@@ -25,7 +25,7 @@
 
 ---
 
-## 2.向上一个活动返回数据 ##
+### 2.向上一个活动返回数据 ###
 
 **SecondActivity**
 
@@ -66,8 +66,7 @@
             }
         });
 
-#### (2) ####
-# 3.活动的生命周期 #
+### 3.活动的生命周期 ###
 
 - 当某activity stop后，系统会根据内存占用情况决定是否将该activity 回收，如果回收，则会导致数据丢失。
 
@@ -79,13 +78,13 @@
 
     stop->restart->resume
 
-### 回收不等同于destroy，不能用destroy模拟回收，得到回收之前保存的数据，暂时无法模拟回收，仅仅只有回收时，再次进入该活动 ###
+#### 回收不等同于destroy，不能用destroy模拟回收，得到回收之前保存的数据，暂时无法模拟回收，仅仅只有回收时，再次进入该活动 ####
 
 **解决办法：在被回收之前保存数据**
 
-###  此方法在Stop之前调用，因为一旦进入Stop状态，就随时可能被回收3
+####  此方法在Stop之前调用，因为一旦进入Stop状态，就随时可能被回收####
 
-	数据保存到 Bundle对象中
+    数据保存到 Bundle对象中
 	 @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -95,7 +94,7 @@
 
 **在创建活动时，判断传进来的 Bundle对象是否为空，为空则没有需要保存的数据**
 
-	 @Override
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
  		....
 
@@ -106,7 +105,7 @@
         }
 
 
-### finish ###
+#### finish ####
 
 - 当调用finish，生命周期 `pause->stop->destroy`
 - 执行`finish`之后，该`activity`从栈中取出，故当下一个Activity 返回时，不会返回到该`activity`，只能返回此`Activity`的前一个`Activity`
@@ -114,7 +113,7 @@
 - `finish()` 虽然会导致 `onStop()`,但不会触发`onSaveInstanceState()`方法，也就不能手动模拟 回收=> 获取数据
 
 
-# 4.页面中多个按钮事件，使当前`activity`实现`OnClickListener`#
+### 4.页面中多个按钮事件，使当前`activity`实现`OnClickListener`#
 
 
 
@@ -172,7 +171,7 @@
         finish();
     }
 
-# 5.活动的启动模式 #
+### 5.活动的启动模式 ###
 
 1. `standard`
 		**标准启动模式**，不管当前活动在不在栈顶，只要启动，就会创建新的活动实例，压栈
@@ -189,8 +188,8 @@
 
 	`getTaskId()` 获取当前活动所在返回栈的 `id`
 
-# 6.工具类 #
-##(1)获取当前活动的名称 ##
+### 6.工具类 ###
+#### (1)获取当前活动的名称 ####
 
 - 分析，每进入一个活动时，都会调用父类的 `onStart()`方法，故自定义一个类，继承`AppCompatActivity`,并重写`onStart()方法`,输出获得当前类的类名（即活动名）
 
@@ -206,7 +205,7 @@
 
 **让其他活动类继承`BaseActivity`类即可**
 
-## (2)存放返回栈中的活动，可随时随地结束整个程序 ##
+#### (2)存放返回栈中的活动，可随时随地结束整个程序 ####
 
 **ActivityCollector**
 
@@ -253,7 +252,7 @@
 	    android.os.Process.killProcess(android.os.Process.myPid());
     	android.os.Process.myPid())  // 当前进程id
 
-# 7.启动活动的最佳写法 #
+### 7.启动活动的最佳写法 ###
 
 分析：`firstActivity`	-->通过`intent`启动-->`secondActivity`
 
