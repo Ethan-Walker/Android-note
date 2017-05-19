@@ -1,6 +1,6 @@
 # BroadCast
 
-##全局广播
+## 全局广播
 ### 1. 静态注册广播
 1. 创建`BroadCast`的子类，重写 `onReceive`方法，`onReceive`内是接收到广播时的操作
 2. 在`AndroidMainFest`内，添加 `receiver`
