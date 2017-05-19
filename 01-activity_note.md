@@ -52,7 +52,7 @@
 ---
 **ThirdActivity**
 #### （1）：通过按钮点击事件返回 ####
-
+```java
         // 向上一个活动返回数据，注意new Intent()内不能传入参数
         Button thirdButton = (Button)findViewById(R.id.thirdButton);
         thirdButton.setOnClickListener(new View.OnClickListener(){
@@ -65,7 +65,7 @@
                 finish();   // 结束当前活动
             }
         });
-
+```
 ### 3.活动的生命周期 ###
 
 - 当某activity stop后，系统会根据内存占用情况决定是否将该activity 回收，如果回收，则会导致数据丢失。
@@ -85,13 +85,15 @@
 ####  此方法在Stop之前调用，因为一旦进入Stop状态，就随时可能被回收####
 
     数据保存到 Bundle对象中
+
+```java
 	 @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         String str="这是销毁之前保存的数据";
         outState.putString("save",str);
     }
-
+```
 **在创建活动时，判断传进来的 Bundle对象是否为空，为空则没有需要保存的数据**
 
 ```java
@@ -196,7 +198,7 @@
 - 分析，每进入一个活动时，都会调用父类的 `onStart()`方法，故自定义一个类，继承`AppCompatActivity`,并重写`onStart()方法`,输出获得当前类的类名（即活动名）
 
 **BaseActivity**
-
+```java
 	public class BaseActivity extends AppCompatActivity {
    		 @Override
    		 protected void onStart() {
@@ -204,13 +206,13 @@
        	 Log.e("BaseActivity",getClass().getSimpleName()); 获取当前类的 类名
    		 }
 	}
-
+```
 **让其他活动类继承`BaseActivity`类即可**
 
 #### (2)存放返回栈中的活动，可随时随地结束整个程序 ####
 
 **ActivityCollector**
-
+```java
     public class ActivityCollector {
          private static List<Activity> activities = new ArrayList<>();
 
@@ -228,9 +230,9 @@
         	}
    		 }
 	}
-
+```
 **BaseActivity**
-
+```java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,18 +244,20 @@
         super.onDestroy();
         ActivityCollector.removeActivity(this);  // 销毁后，从集合中移走
     }
-
+```
 **ThirdActivity**
 
 1. 当想退出程序时：
-
+```java
 	    ActivityCollector.finishAll();
+```
 
 2. 杀掉整个进程，确保程序退出：
+```java
 
 	    android.os.Process.killProcess(android.os.Process.myPid());
     	android.os.Process.myPid())  // 当前进程id
-
+```
 ### 7.启动活动的最佳写法 ###
 
 分析：`firstActivity`	-->通过`intent`启动-->`secondActivity`
@@ -263,7 +267,7 @@
 解决办法：由需求者 `secondActivity` 根据需求，将需要的方法封装到静态函数中，这样提供者  `firstActivity` 就能调用其静态方法，通过传参的方式，将 `secondActivity `需要的参数传递过去
 
 **secondActivity**
-
+```java
  	public static void startAction(Context context, String data1, String data2){
         Intent intent = new Intent(context,FourthActivity.class);
         intent.putExtra("name",data1);
@@ -271,9 +275,10 @@
         context.startActivity(intent);
 
     }
-
+```
 注意：`Context` 保存的是 触发该`activity`启动 的`Activity `对象，`context.startActivity（）`声明由`context `触发启动
 
 **firstActivity**
-
+```java
     startAction(firstActivity.this,"张三","213");
+```
