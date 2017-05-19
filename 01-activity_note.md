@@ -9,16 +9,18 @@
                 Intent intent = new Intent(SecondActivity.this,ThirdActivity.class);
                 intent.putExtra("name","王犇");
                 startActivity(intent);
-		
+
 
 **ThirdActivity:**
 
 `onCreate` 方法中（即当页面加载时）
 
 		Intent intent = getIntent();  // 获取传递进来的intent
-        String name = intent.getStringExtra("name");
-        if(name!=null){
-            Log.d("得到的姓名:",name);
+        if(intent!=null){
+            String name = intent.getStringExtra("name");
+            if(name!=null){
+                Log.d("得到的姓名:",name);
+            }
         }
 
 ---
@@ -81,7 +83,7 @@
 
 **解决办法：在被回收之前保存数据**
 
-###  此方法在Stop之前调用，因为一旦进入Stop状态，就随时可能被回收3 
+###  此方法在Stop之前调用，因为一旦进入Stop状态，就随时可能被回收3
 
 	数据保存到 Bundle对象中
 	 @Override
@@ -106,18 +108,18 @@
 
 ### finish ###
 
-- 当调用finish，生命周期 `pause->stop->destroy`  
+- 当调用finish，生命周期 `pause->stop->destroy`
 - 执行`finish`之后，该`activity`从栈中取出，故当下一个Activity 返回时，不会返回到该`activity`，只能返回此`Activity`的前一个`Activity`
 
 - `finish()` 虽然会导致 `onStop()`,但不会触发`onSaveInstanceState()`方法，也就不能手动模拟 回收=> 获取数据
-	
+
 
 # 4.页面中多个按钮事件，使当前`activity`实现`OnClickListener`#
 
-	
+
 
 	public class MainActivity extends AppCompatActivity implements View.OnClickListener {  实现View.OnClickListener接口，重写 onClick方法
-	
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -154,7 +156,7 @@
                 break;
         }
     }
-	
+
 	// 单独声明每个事件
     public void startNormalActivity(Button b) {
         Intent intent = new Intent(MainActivity.this, NormalActivity.class);
@@ -173,7 +175,7 @@
 # 5.活动的启动模式 #
 
 1. `standard`
-		**标准启动模式**，不管当前活动在不在栈顶，只要启动，就会创建新的活动实例，压栈 
+		**标准启动模式**，不管当前活动在不在栈顶，只要启动，就会创建新的活动实例，压栈
 
 2. `singleTop`
 	如果活动在栈顶，启动该活动，不会创建新的活动实例，直接到达该活动
@@ -245,7 +247,7 @@
 1. 当想退出程序时：
 
 	    ActivityCollector.finishAll();
-    
+
 2. 杀掉整个进程，确保程序退出：
 
 	    android.os.Process.killProcess(android.os.Process.myPid());
@@ -253,7 +255,7 @@
 
 # 7.启动活动的最佳写法 #
 
-分析：`firstActivity`	-->通过`intent`启动-->`secondActivity` 
+分析：`firstActivity`	-->通过`intent`启动-->`secondActivity`
 
 由于s`econdActivity` 可能需要若干个参数通过 `intent` 传递过来，但是 `firstActivity` 并不知道其需要哪些参数，造成了 开发上的困难
 
