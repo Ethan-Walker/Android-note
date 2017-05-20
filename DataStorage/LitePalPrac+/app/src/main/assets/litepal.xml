@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<litepal>
+    <dbname value="hobby" />
+    <version value="3" />
+    <!--映射模型列表-->
+    <list>
+        <mapping class="com.example.ethanwalker.a04_litepalprac.Album" />
+        <mapping class="com.example.ethanwalker.a04_litepalprac.Song" />
+    </list>
+    <storage value="internal" />
+</litepal>
