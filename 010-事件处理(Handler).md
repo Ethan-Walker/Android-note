@@ -444,6 +444,8 @@ public class HandlerDemo2 extends Activity {
 - `Result`: 指定的是异步任务执行完后返回给UI线程的结果的类型,即  `doInBackground()` 返回的 数据类型
 3. 创建自定义的继承类对象， 调用`execute` 方法，同时传入参数
 4. 要访问网络，必须添加权限 
+5. doInBackground 方法中所有操作都默认在子线程中执行，不能操作UI，其他方法都在主线程中执行，可以操作UI
+- 
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
