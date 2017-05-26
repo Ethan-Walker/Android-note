@@ -437,13 +437,12 @@ public class HandlerDemo2 extends Activity {
 
 #### 7. AsyncTask  处理异步任务
 由于 UI 线程 不能被 阻塞，所以 耗时任务一般都会在新线程中进行，可以通过创建新线程，在新线程中 利用handler 传递消息，也可以 通过 AsyncTask
-
 1. 继承`AsyncTask` 类，重写   `doInBackground()`方法，该方法在后台执行异步任务的具体操作
 2. 确定 `AsyncTask` 的 三个泛型的 参数 `<Params, Progress, Result>`
-	 `Params`: 指定的是我们传递给异步任务执行时的参数的类型
-		 `Progress`: 指定的是我们的异步任务在执行的时候将执行的进度返回给UI线程的参数的类型
-		 `Result`: 指定的是异步任务执行完后返回给UI线程的结果的类型,即  `doInBackground()` 返回的 数据类型
-3.  创建自定义的继承类对象， 调用`execute` 方法，同时传入参数
+- `Params`: 指定的是我们传递给异步任务执行时的参数的类型
+- `Progress`: 指定的是我们的异步任务在执行的时候将执行的进度返回给UI线程的参数的类型
+- `Result`: 指定的是异步任务执行完后返回给UI线程的结果的类型,即  `doInBackground()` 返回的 数据类型
+3. 创建自定义的继承类对象， 调用`execute` 方法，同时传入参数
 4. 要访问网络，必须添加权限 
 
 ```xml
