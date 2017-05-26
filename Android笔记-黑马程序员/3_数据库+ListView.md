@@ -252,7 +252,7 @@
 		4.创建Adapter的一个对象，设置给listview。
 				listview.setAdapter(ListAdapter adapter);
 	
-#6 listview优化 
+# 6 listview优化 
 	
 	adapter中getview方法会传进来一个convertView，convertView是指曾经使用过的view对象，可以被重复使用，但是在使用前需要判断是否为空，不为空直接复用，并作为getview方法的返回对象。
 			TextView view = null;
@@ -263,7 +263,7 @@
 			}
 			return view；
 
-#7 listview---老虎机
+# 7 listview---老虎机
 	
 	javaweb mvc
 	m....mode....javabean
@@ -276,7 +276,7 @@
 	c....control...adapter
  	
 
-#8 listview显示原理 (了解)
+# 8 listview显示原理 (了解)
 	1.要考虑listview显示的条目数    getcount
 	2.考虑listview每个条目显示的内容   getview
 	3.考虑每个item的高度，因为屏幕的多样化
@@ -370,7 +370,7 @@
 	7.复写OnItemClicklistener方法，获取相应条目上的bean对象，最终获取到url，做Intent跳转;  不ok
 
 
-#10 常用获取inflate的写法 
+# 10 常用获取inflate的写法 
 
 			1.
 			//context:上下文, resource:要转换成view对象的layout的id, root:将layout用root(ViewGroup)包一层作为codify的返回值,一般传null
@@ -385,7 +385,7 @@
 			LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = layoutInflater.inflate(R.layout.item_news_layout, null);
 	
-#11 arrayadapter  (不用看，知道有这个玩意就行)
+# 11 arrayadapter  (不用看，知道有这个玩意就行)
 		//找到控件
 		ListView lv_array = (ListView) findViewById(R.id.lv_array);
 		ListView lv_simple = (ListView) findViewById(R.id.lv_simple);
@@ -396,7 +396,7 @@
 		lv_array.setAdapter(arrayAdapter);
 		
 		
-#12 simpleadapter   (不用看，知道有这个玩意就行)
+# 12 simpleadapter   (不用看，知道有这个玩意就行)
 
 
 		//创建一个simpleAdapter,封装simpleAdapter的数据
@@ -419,6 +419,6 @@
 		
 		lv_simple.setAdapter(simpleAdapter);
 
-#13 数据库的listview的界面显示 (新闻会了，这个就会了)
+# 13 数据库的listview的界面显示 (新闻会了，这个就会了)
 
 
