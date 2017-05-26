@@ -347,7 +347,7 @@ protected void onCreate(Bundle savedInstanceState) {
     },0,2000);
 }
 ```
-##### （5） 子线程之内 利用`handler` 消息传递
+##### （2） 子线程之内 利用`handler` 消息传递
 
 ```java
 public class HandlerDemo2 extends Activity {
@@ -433,6 +433,7 @@ public class HandlerDemo2 extends Activity {
     }
 }
 ```
+##### (3) 在子线程中获取主线程中Handler对象，然后发送消息（这样主线程就能通过子线程传入的数据修改UI），实现线程间通信
 
 #### 7. AsyncTask  处理异步任务
 由于 UI 线程 不能被 阻塞，所以 耗时任务一般都会在新线程中进行，可以通过创建新线程，在新线程中 利用handler 传递消息，也可以 通过 AsyncTask
