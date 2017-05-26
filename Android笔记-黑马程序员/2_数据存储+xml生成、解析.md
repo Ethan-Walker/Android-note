@@ -1,7 +1,7 @@
-数据的存储
+# 数据的存储
 
 
-#1.测试的相关概念 (了解)
+# 1.测试的相关概念 (了解)
 	
 		SUV  好的软件不是开发出来的是测试出来的
 	
@@ -22,7 +22,7 @@
 
 		monkey测试： adb shell下的一个测试指令。 adb shell +　monkey -p packagename count;
 
-#2.单元测试(了解，会用即可)
+# 2.单元测试(了解，会用即可)
 	1.创建一个类集成AndroidTestCase，那么该类就具备单元测试的功能。
 
 	2.需要在androidmanifest.xml中的application节点下配置一个uses-library;
@@ -33,7 +33,7 @@
         android:targetPackage="com.itheima.junit" />
 
 	4.如果不知道怎么配置androidmanifest.xml,可以新建一个android test project工程，会自动配置.
-#3.Logcat日志猫工具的使用 (会用即可)
+# 3.Logcat日志猫工具的使用 (会用即可)
 
 		包括五种级别，可以添加过滤器过滤日志信息。能够帮助我们观察程序运行的状态。
 		e:
@@ -60,7 +60,7 @@
 	使用：LogUtils.e(tag,msg)
 		
 	
-#4.把数据存储到文件(login案例)  android 下的数据存储 
+# 4.把数据存储到文件(login案例)  android 下的数据存储 
 
 	1.写布局
 		LinearLayout + RelativeLayout
@@ -88,7 +88,7 @@
 1. 定义私有成员变量` private Context mContext=this;`后面需要传入Context 对象时，直接传入mContext
 2. TextUtils.isEmpty(String str);  判断字符串是否为空
 
-#5.存储到SD卡,获取SD的大小及可用空间  （重点）
+# 5.存储到SD卡,获取SD的大小及可用空间  （重点）
 	
 	使用Sdcard注意事项：
 
@@ -121,7 +121,7 @@
 		/sdcard:  Enviroment.getExternalStorageDirectory().getPath();
 					是一个外部存储目录，只用应用声明了<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>的一个权限，就可以访问读写sdcard目录；所以一般用来存放一些安全性不高的数据，文件size比较大的数据。
 		
-#7.文件的权限概念 (了解)
+# 7.文件的权限概念 (了解)
 
 	//通过context对象获取一个私有目录的文件读取流  /data/data/packagename/files/userinfoi.txt
 	FileInputStream fileInputStream = context.openFileInput("userinfo.txt");
@@ -137,7 +137,7 @@
 	5-7：该文件所属用户组对本文件的权限
 	8-10：其他用户对该文件的权限。
 	
-#8.SharedPreferences介绍  (重点) 用来做数据存储
+# 8.SharedPreferences介绍  (重点) 用来做数据存储
 
 		sharedPreferences是通过xml文件来做数据存储的。
 		一般用来存放一些标记性的数据，一些设置信息。
@@ -171,7 +171,7 @@
 
 		通过PreferenceManager可以获取一个默认的sharepreferences对象		
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-#9 生成xml的2种方式 
+# 9 生成xml的2种方式 
 	
 
 	1.写布局
@@ -246,7 +246,7 @@
 	
 
 	
-#10.使用pull解析xml格式的数据
+# 10.使用pull解析xml格式的数据
 
 	dom解析：基于全文加载的解析方式   sax解析：基于事件的逐行解析方式  pull解析：同sax
 		
