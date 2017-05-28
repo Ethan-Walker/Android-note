@@ -2,9 +2,9 @@
 ### 1. 阅读资料了解android事件处理机制
 Android包括两大事件处理机制： 基于监听的事件处理机制和 基于回调的事件处理机制。
 监听：**委托式**，为Android界面组件绑定特定的事件监听器。
-
-```
 例如：
+
+```java
 Button button = (Button)findViewById(R.id.but);    // 组件
 
 // 注册事件监听器，绑定对应的 事件
@@ -12,8 +12,7 @@ button.setOnClickListener(new View.OnClickListener() {
             @Override
             public boolean onClick(View v) {
             }
-
-        });
+});
 ```
 
 回调： **事件源和事件监听器是统一的，当在某个组件触发某个事件时，组件自身的方法负责处理该事件。**Android 为绝大部分组件提供了事件响应的回调方法，我们需要继承这些组件类，重写这些方法即可。
@@ -23,7 +22,8 @@ button.setOnClickListener(new View.OnClickListener() {
 
 
 #### （1） 利用监听按钮 实现打开电话拨号器 的功能
-```
+
+```java
  
     Intent intent = new Intent();
     intent.setAction(Intent.ACTION_DIAL);
@@ -34,7 +34,8 @@ button.setOnClickListener(new View.OnClickListener() {
 
  
 #### （2）监听事件，实现控制飞机
-```
+
+```java
 PlaneView.java
 public class PlaneView extends View {
     public float currentX;
@@ -145,7 +146,7 @@ public class Plane extends AppCompatActivity {
 
 #### 1.自定义组件，重写不同事件的对应的响应方法
 
-```
+```java
 public class MyButton extends Button {
     public MyButton(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -190,9 +191,9 @@ public class MyButton extends Button {
 **注意：不仅仅View 的子类可以重写各种事件的响应方法，在Activity 的子类中 也能重写各种事件的响应方法**
 	
 	例：上面的自定义`MyButton` 组件所在的`Activity`类 也设置了 对应的 `onKeyDown` 响应事件，且 `MyButton` 中的 `onKeyDown` 返回`false`，即允许事件扩散
-```
-
-	public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+	
+```java
+    public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,7 +213,7 @@ public class MyButton extends Button {
 
 ##### DrawView .java
 
-```
+```java
 public class DrawView extends View {
     public float currentX=40;
     public float currentY=50;
@@ -243,7 +244,7 @@ public class DrawView extends View {
 ##### 在其他布局文件中加上 自定义view组件
    
 
-```
+```xml
 <com.example.ethanwalker.demo.DrawView
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -256,6 +257,7 @@ public class DrawView extends View {
 #### 5. 响应系统设置更改 `Configuration`
 ##### 获取`Configuration`对象
 通过 `Activity`中的 `getResources() `获取 `Resources`对象，再通过 `getConfiguration` 获得 `Configuration` 对象
+
 ```java
   Configuration conf = getResources().getConfiguration();
 ```
@@ -279,12 +281,12 @@ String oritention = ((conf.orientation == Configuration.ORIENTATION_LANDSCAPE) ?
 1. 调用当前 `Activity` 对象中 的 `setRequestedOrientation`方法 ，设置当前屏幕的 方向。
                 
 
-```	
+```java
 ConfigDemo.this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 ```
 2. 重写当前`Activity` 类中的 `onConfigurationChanged` 方法，监听 系统设置更改
 
-```
+```java
 @Override
 public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
@@ -296,7 +298,7 @@ public void onConfigurationChanged(Configuration newConfig) {
 
 3.  在 `AndroidManifest.xml` 中对应的  `activity` 中 配置 `onCinfigChange` 属性，指定 该 `Activity`可以监听 系统设置的改变
 
-```
+```xml
 <activity
         android:configChanges="orientation|screenSize"
         android:name=".ConfigDemo">
@@ -314,9 +316,9 @@ UI线程（主线程）主要负责与UI相关的事件，如按键响应，屏�
 
 #####  （1）在子线程中调用主线程的 handler对象，向主线程的 MessageQueue 发送消息，间接改变Activity 中的 UI 组件
 
-```
 activity 子类：
 
+```java
 private Handler handler;
 private int[] pics = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d};
 int currentImageId = 0;
@@ -345,11 +347,9 @@ protected void onCreate(Bundle savedInstanceState) {
     },0,2000);
 }
 ```
-##### （5） 子线程之内 利用`handler` 消息传递
+##### （2） 子线程之内 利用`handler` 消息传递
 
-
-
-```
+```java
 public class HandlerDemo2 extends Activity {
     MyHandlerThread myThread ;
     EditText randomCount;
@@ -433,26 +433,25 @@ public class HandlerDemo2 extends Activity {
     }
 }
 ```
+##### (3) 在子线程中获取主线程中Handler对象，然后发送消息（这样主线程就能通过子线程传入的数据修改UI），实现线程间通信
 
 #### 7. AsyncTask  处理异步任务
 由于 UI 线程 不能被 阻塞，所以 耗时任务一般都会在新线程中进行，可以通过创建新线程，在新线程中 利用handler 传递消息，也可以 通过 AsyncTask
-
 1. 继承`AsyncTask` 类，重写   `doInBackground()`方法，该方法在后台执行异步任务的具体操作
 2. 确定 `AsyncTask` 的 三个泛型的 参数 `<Params, Progress, Result>`
-	 `Params`: 指定的是我们传递给异步任务执行时的参数的类型
-		 `Progress`: 指定的是我们的异步任务在执行的时候将执行的进度返回给UI线程的参数的类型
-		 `Result`: 指定的是异步任务执行完后返回给UI线程的结果的类型,即  `doInBackground()` 返回的 数据类型
-3.  创建自定义的继承类对象， 调用`execute` 方法，同时传入参数
+- `Params`: 指定的是我们传递给异步任务执行时的参数的类型
+- `Progress`: 指定的是我们的异步任务在执行的时候将执行的进度返回给UI线程的参数的类型
+- `Result`: 指定的是异步任务执行完后返回给UI线程的结果的类型,即  `doInBackground()` 返回的 数据类型
+3. 创建自定义的继承类对象， 调用`execute` 方法，同时传入参数
 4. 要访问网络，必须添加权限 
+5. doInBackground 方法中所有操作都默认在子线程中执行，不能操作UI，其他方法都在主线程中执行，可以操作UI
+- 
 
-```
+```xml
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-
-
-
-```
+```java 
 public class AsyncTaskDemo extends AppCompatActivity {
     TextView textView;
     @Override
@@ -543,8 +542,6 @@ public class AsyncTaskDemo extends AppCompatActivity {
         }
     }
 }
-
-
  
 ```
 
