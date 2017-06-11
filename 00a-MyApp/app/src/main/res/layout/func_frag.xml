@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/get_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取联系人" />
+    <Button
+        android:id="@+id/download"
+        android:text="使用服务提供异步下载"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/xml_parse"
+        android:text="解析XML文件"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

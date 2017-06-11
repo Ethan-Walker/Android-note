@@ -1,11 +1,13 @@
 package com.example.ethanwalker.myapp;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by EthanWalker on 2017/4/14.
@@ -15,7 +17,7 @@ public class WeixinAdapter extends RecyclerView.Adapter<WeixinAdapter.ViewHolder
     public static WeixinCallback callback;
 
     public interface WeixinCallback {
-        void startChat();
+        void startChat(String firendName);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,15 +40,16 @@ public class WeixinAdapter extends RecyclerView.Adapter<WeixinAdapter.ViewHolder
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(v.getContext(),"点击的是第"+viewHolder.getAdapterPosition()+"项",Toast.LENGTH_SHORT).show();
+                UserList.User user = UserList.users.get(viewHolder.getAdapterPosition());
 
+//                Toast.makeText(v.getContext(), "点击的是第" + viewHolder.getAdapterPosition() + "项", Toast.LENGTH_SHORT).show();
                 if (callback != null) {
-                    callback.startChat();
+                    callback.startChat(user.getName());
+//                    Log.e(TAG, "user.getName():   " + user.getName());
                 }
             }
         });
         return viewHolder;
-
     }
 
     @Override
@@ -60,4 +63,6 @@ public class WeixinAdapter extends RecyclerView.Adapter<WeixinAdapter.ViewHolder
     public int getItemCount() {
         return UserList.users.size();
     }
+
+    private static final String TAG = "WeixinAdapter";
 }
