@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\4.0.0-RC0\eb86cd1d96acc30dcebf338abaf2c62ca28bf355\glide-4.0.0-RC0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="eb86cd1d96acc30dcebf338abaf2c62ca28bf355">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\glide-4.0.0-RC0_510c9b79a87eed5a16687b8f401994cd4ddc89d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\disklrucache\4.0.0-RC0\46d23cdc19155c5f0d47ece99ca1c421346c1509\disklrucache-4.0.0-RC0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="46d23cdc19155c5f0d47ece99ca1c421346c1509">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\disklrucache-4.0.0-RC0_a6a30f55c77c63be679962f008e23400fb0bb194.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.android\build-cache\9e069bba72235efa302dcdbc6cc68e8c85bc48fe\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\classes_f044ddde69a848b38dd9b89cc36555723c9abf1c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.android\build-cache\8322f81f4e554a03c2ee9f4e0c5a2037bccf3a9f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\classes_d6ffe06f71d008188f695c055448f6939777a5fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\gifdecoder\4.0.0-RC0\c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7\gifdecoder-4.0.0-RC0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c64f5d4805b528de434a5a8bb9a8091b6f9cd1a7">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\gifdecoder-4.0.0-RC0_e40fa812721adcdcb5f58060276c3d6991942056.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\EthanWalker\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\annotations\4.0.0-RC0\d5dd0afc50069b7fa0fc12ac85f91efa8df4db67\annotations-4.0.0-RC0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d5dd0afc50069b7fa0fc12ac85f91efa8df4db67">
+        <dex dex="F:\2017_sophomore_study_data\android\workspace\13-MaterialDesignDemo\app\build\intermediates\pre-dexed\debug\annotations-4.0.0-RC0_0ec6b1b74be09fc86dfb04eedf6c6d2c02c0f9ad.jar" />
+    </item>
+
+</items>
