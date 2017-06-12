@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BroadCastForceOffline.iml" filepath="$PROJECT_DIR$/BroadCastForceOffline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/00d-BroadCastForceOffline.iml" filepath="$PROJECT_DIR$/00d-BroadCastForceOffline.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/广播实现强制下线功能.iml" filepath="$PROJECT_DIR$/广播实现强制下线功能.iml" />
     </modules>

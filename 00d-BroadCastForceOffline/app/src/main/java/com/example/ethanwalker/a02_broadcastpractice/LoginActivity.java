@@ -33,7 +33,9 @@ public class LoginActivity extends BaseActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (username.getText().toString().equals("admin") && psw.getText().toString().equals("123456qq")) {
+                String account = username.getText().toString();
+                String password = psw.getText().toString();
+                if (account.equals("admin") && password.equals("123456qq")) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     SharedPreferences.Editor editor = preferences.edit();
