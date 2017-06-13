@@ -1,4 +1,11 @@
 ### 1. 使用JSONObject
+
+1.
++ json 形式为 { name:'',age:''} ， 即单个JSON对象
+`JSONObject jsonObject = new JSONObject(data);`
+
++ json 形式为数组 [{name:"",age:""},{name:"",age:""}]
+
 ```java
  private void parseWithJSONObject(String responseData) {
         JSONArray jsonArray = null;
@@ -23,14 +30,15 @@
 1. 添加依赖 `compile 'com.google.code.gson:gson:2.7'`
 2. 创建和JSON文件中属性一一对应的 类，如App,并生成set、get方法
 3.
++ json 形式为 { name:'',age:''} ， 即单个JSON对象
 
 ```java
-    private void parseWithGSON(String responseData){
-        Gson gson = new Gson();
-        // 根据json内容和创建的类之间互相匹配，返回包含该类对象的集合
-        List<App> apps = gson.fromJson(responseData,new TypeToken<List<App>>(){}.getType());
-        for(App app:apps){
-            Log.e("id/name/version",app.getId() + "/" + app.getName() + "/" + app.getVersion());        }
-    }
+App app = new Gson().fromJson(responseData,App.class);
+```
 
++ json 形式为数组 [{name:"",age:""},{name:"",age:""}]
+
+```java
+// 根据json内容和创建的类之间互相匹配，返回包含该类对象的集合
+ List<App> apps = new Gson().fromJson(responseData,new TypeToken<List<App>>(){}.getType());
 ```
