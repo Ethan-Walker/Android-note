@@ -70,7 +70,46 @@ public void sendRequest() {
     }
 
 2. OkHttp （开源组件）
-- 添加依赖 ： compile 'com.squareup.okhttp3:okhttp:3.8.0'
+添加依赖 ： compile 'com.squareup.okhttp3:okhttp:3.8.0'
+
+> 基于同步请求：由于网络请求耗时，必须手动开启一个线程执行网络请求，否则会产生ANR问题
+
+```java
+Request request = new Request.Builder().url("").build();
+Respnse response = okHttpClient.newCall(request).execute();
+```
+
+> 基于异步请求： okhttp3 提供了 Call.enqueue(okhttp3.Callback callback) 方法，请求对象放入请求队列中，在内部实现了子线程访问请求
+
+```java
+Request request = new Request.Builder().url("").build();
+okHttpClient.newCall(request).enqueue(callback);
+```
+
+调用时，传入一个 okhttp3.Callback 实现类对象，**注意，重写的 onResponse()/onFailure()方法都在子线程中，不能处理UI组件**
+例如：
+
+```java
+HttpUtil.java
+
+    public static void sendOkHttpReq(String address, okhttp3.Callback callback) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(address).build();
+        client.newCall(request).enqueue(callback);           // 如果请求成功返回结果，将回调callback中重写的 onResponse 方法
+    }
+
+MainActivity.java
+    sendOkHttpReq("",new okhttp3.Callback(){
+        void onResponse(Call call, Response response){
+
+        }
+        void onFailure(... ){
+
+        }
+    });
+
+ ```
+
 
 ```java
 public void sendReq() {
@@ -104,3 +143,4 @@ public void sendReq() {
         }.start();
     }
 ```
+
